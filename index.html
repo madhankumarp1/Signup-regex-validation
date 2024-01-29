@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css">
+ 
+</head>
+
+<body>
+    <div id="mainContainer">
+        <form name="signUpForm" id="signUpForm">
+            <h3>Sign Up</h3>
+            <p>Sign up to clue Mediator</p>
+            <div class="nameFeild">
+                <input type="text" class="name" id="name" placeholder="Name">
+            </div>
+            <div class="emailFeild">
+                <input type="email" class="email" id="email" placeholder="Email Address">
+            </div>
+            <div class="mobileFeild">
+                <input type="number" class="number" id="number" placeholder="Mobile Number">
+            </div>
+            <div class="UserFeild">
+                <input type="text" class="username" placeholder="Username">
+            </div>
+            <div class="passwordFeild">
+                <input type="password" class="password"  placeholder="Password">
+                <div id="Content">
+                    <div class="cont"> 
+                    <p class="paraContent">The minimum password character length is 8 characters must conatain atleast one lowercase letter 1 capital letter 1 number 1 special charcter</p>
+                    <ul>
+                    <li class="Hash">Minimum 8 Characters</li>
+                    <li class="lowerLetter">Lowercase Letter</li>
+                    <li class="capitalLetter">Capital Letter</li>
+                    <li class="numbers">Number</li>
+                    <li class="characters">Special character</li>
+                    </ul>
+                </div>
+            </div> 
+            </div>
+            <div class="confirmPasswordFeild">
+                <input type="password" class="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+            </div>
+            <div class="button">
+                <button type="submit" class="btn">Sign Up</button>
+            </div>
+            <p>Already have an account</p>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
