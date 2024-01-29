@@ -1,6 +1,5 @@
 "use strict"
 
-let form = document.forms.signUpForm;
 let inputName = document.querySelector(".name");
 let inputEmail = document.querySelector(".email");
 let inputMobile = document.querySelector(".number");
@@ -20,125 +19,122 @@ let nameAlert=document.querySelector(".alertValid")
 
 //------------------------toole tip
 
+
+inputPassword.addEventListener("focusin",display)
+inputPassword.addEventListener("focusout",display1)
+
+function display() {
+    hideContent.style.display = "block";
+}
+
+function display1() {
+    hideContent.style.display = "none";
+}
+
 inputPassword.addEventListener("input", () => {
-    // hideContent.style.display = "block";
     let lowerCaseLetters = /[a-z]/g;
     let upperCaseLetters = /[A-Z]/g;
     let numberss = /[0-9]/g;
-    let specialch = /[!@#$%&*]/g;
+    let specialch = /[ ""!"#$%&'()*+,-./:;<=>?@^_`~{}|]/g;
 
 
     if (inputPassword.value.match(lowerCaseLetters)) {
         Lower.classList.remove("invalid");
         Lower.classList.add("valid");
-        hideContent.style.display = "block";
 
     } else {
         Lower.classList.remove("valid");
         Lower.classList.add("invalid");
-        hideContent.style.display = "none";
-
     }
 
     if (inputPassword.value.match(upperCaseLetters)) {
         Upper.classList.remove("invalid");
         Upper.classList.add("valid");
-        // hideContent.style.display = "block";
+
     } else {
         Upper.classList.remove("valid");
         Upper.classList.add("invalid");
-        // hideContent.style.display = "none";
     }
 
     if (inputPassword.value.match(numberss)) {
         numBers.classList.remove("invalid");
         numBers.classList.add("valid");
-        // hideContent.style.display = "block";
     } else {
         numBers.classList.remove("valid");
         numBers.classList.add("invalid");
-        // hideContent.style.display = "none";
     }
 
     if (inputPassword.value.length >= 8) {
         Hash.classList.remove("invalid");
         Hash.classList.add("valid");
-        // hideContent.style.display = "block";
+
     } else {
         Hash.classList.remove("valid");
         Hash.classList.add("invalid");
-        // hideContent.style.display = "none";
+
     }
 
     if (inputPassword.value.match(specialch)) {
         SpecialChar.classList.remove("invalid");
         SpecialChar.classList.add("valid");
-        // hideContent.style.display = "block";
+
     } else {
         SpecialChar.classList.remove("valid");
         SpecialChar.classList.add("invalid");
-        // hideContent.style.display = "none";
+
     }
 });
 
 
+//-------------------------form valid
 
+let form = document.getElementById("signUpForm");
 
-inputEmail.addEventListener("input", () => {
-    EmailAlerts.style.display = "block";
-    let emailValid = /([a-z0-9_.+-]+)@[a-zA-z0-9_.+]+/g;
-    if (emailValid.test(inputEmail.value)) {
-        EmailAlerts.classList.add("GreenColor");
-        EmailAlerts.classList.remove("RedColor")
-        // EmailAlerts.style.display="none"
-    } else {
-        EmailAlerts.classList.add("RedColor");
-        EmailAlerts.classList.remove("GreenColor")
+form.addEventListener('submit', validateForm);
+
+function validateForm(event) {
+    event.preventDefault();
+
+    let inputName = document.getElementById("name").value;
+    let inputEmail = document.getElementById("email").value;
+    let inputMobile = document.getElementById("number").value;
+    let inputPassword = document.querySelector(".password").value;
+    let inputCon_Password = document.getElementById("confirmPassword").value;
+    let inputUsername = document.querySelector(".username").value;
+
+    let emailRegex = /([a-z0-9_.+-]+)@[a-zA-z0-9_.+]+/g;
+    let nameRegex = /[a-z]{3,}/g;
+    let mobileRegex = /^\d{10}$/;
+    let usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+
+    if (!nameRegex.test(inputName)) {
+        alert("Invalid Name.");
+        return;
     }
-});
+    if (!emailRegex.test(inputEmail)) {
+        alert("Invalid email address.");
+        return;
+    }
+    if (!mobileRegex.test(inputMobile)) {
+        alert("Invalid Mobile number.");
+        return;
+    }
+    if (!usernameRegex.test(inputUsername)) {
+        alert("Invalid username.");
+        return;
+    }
 
+    if (inputPassword !== inputCon_Password) {
+        alert("Confirm Passwords do not match.");
+        return;
+    }
 
+    alert("Form submitted");
 
-inputName.addEventListener("input",()=>{
-    nameAlert.style.display="block";
-     let NameValid=/[a-z]{3,}/g
-     if(inputName.value.match(NameValid)){
-          nameAlert.classList.add("GreenColor")
-          nameAlert.classList.remove("RedColor")
-     }else{
-        nameAlert.classList.add("RedColor")
-        nameAlert.classList.remove("GreenColor")
-     }
-})
+    newFunction();
 
-
-
-
-[inputUsername, inputMobile, inputEmail, inputName, inputCon_Password].forEach(inputPassword => {
-    inputPassword.addEventListener("input", () => {
-         hideContent.style.display="none";
-    });
-});
-
-[ inputUsername, inputMobile, inputPassword, inputName, inputCon_Password].forEach(EmailFeild => {
-    EmailFeild.addEventListener("input", () => {
-        EmailAlerts.style.display = "none";
-    });
-});
-
-[ inputUsername, inputMobile, inputPassword, inputEmail, inputCon_Password].forEach(UserFeild => {
-    UserFeild.addEventListener("input", () => {
-        nameAlert.style.display = "none";
-    });
-});
-
-
-
-
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-   
-});
-
-// /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+}
+function newFunction(){
+  let rest = document.getElementById("signUpForm");
+   rest.reset()
+}
