@@ -350,3 +350,6 @@ span#eye {
     left: -23px;
     cursor: pointer;
 }
+.btn:hover{
+    background-color: violet;
+}
